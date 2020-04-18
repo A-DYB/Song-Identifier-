@@ -13,18 +13,20 @@
 double PI= atan2(1, 1) * 4;
 typedef double complex cpl;
 
-void windowed_fft(cpl *output, int size){
+void windowed_fft(cpl *output, int window){
 
 	// TODO apply window function here
 
 	//TODO fft modifies arr which points to output if it is the correct size, not sure if that is ok
-	sample_fft(output,size);
+	sample_fft(output,window);
 
 	//compute the magnitude in log scale
-	for(int i=0;i<size;i++){
-		output[i]=20*log10(cabs(output[i]));
+	/*
+	for(int i=0;i<window;i++){
+		//output[i]=20*log10(cabs(output[i]));
+		output[i]=cabs(output[i]);
 	}
-
+	*/
 
 }
 void sample_fft(cpl *output, int n)
