@@ -8,16 +8,20 @@
 #include "splice.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <complex.h>
+#include <math.h>
 
-double * slice(double * array, int start, int end){
+typedef double complex cpl;
 
-	int arraySize = sizeof(array)/sizeof(array[0]);
+cpl *slice(cpl * array, int start, int end){
+
+	//int arraySize = sizeof(array)/sizeof(array[0]);
 
 	//TODO don't forget to free the memory when the caller is done with this.
-	double *subset = malloc((end-start)*sizeof(double));
+	cpl *subset = malloc((end-start)*sizeof(cpl));
 
-	for(int k=start; k<=end;k++){
-		subset[k] = array[k];
+	for(int k=0; k<end-start;k++){
+		subset[k] = array[k+start];
 	}
 	//caller uses double *sub; sub = slice(...); free(sub)
 	return subset;

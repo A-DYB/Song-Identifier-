@@ -7,7 +7,10 @@
 
 #ifndef SPLICE_H_
 #define SPLICE_H_
+#include <complex.h>
 
-double * subset(double *,int);
+typedef double complex cpl;
+
+cpl * slice(cpl *,int, int);
 
 #endif /* SPLICE_H_ */
