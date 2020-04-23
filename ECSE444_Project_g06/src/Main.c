@@ -22,7 +22,10 @@ const int halved_size = 512;
 const int num_bands = 6;
 const int overlap =2;
 
-
+//size of 5 second clip 11025*5= 55125
+//size of the song: 1695900
+const int file_size =55125;
+int x[55125];
 
 void show(const char * s, cpl buf[], int size) {
 	printf("%s", s);
@@ -51,18 +54,18 @@ void print_2D(double arr[][num_bands], int num_wind){
 
 int main(void) {
 	setvbuf (stdout, NULL, _IONBF, 0);
-	printf("test\n");
 
-	//input data
-	cpl x[1024];
+	//AudioArray
+	//sound_clip
+	FILE* song =fopen("E:\\ECSE 444 MicroProcessors\\sound_clip.csv","r");
 
-	for(int i=0;i<1024;i++){
-		if(i<4){
-			x[i]=1;
+	if(song!=NULL){
+		for(int b=0;b<file_size;b++){
+			fscanf(song,"%d,",&x[b]);
 		}
-		else
-			x[i]=0;
-
+		fclose(song);
+	}else{
+		printf("NULL");
 	}
 
 	int size = sizeof(x)/sizeof(x[0]);
@@ -105,14 +108,38 @@ int main(void) {
 
 	}
 
-	//print_2D(fft_results,num_windows);
-
 	//declare 2D array
 	double (*filtered_output)[num_bands] = malloc(sizeof(double[num_windows][num_bands]));
 
 	filter(fft_results, filtered_output, num_windows);
 
-	print_2D(filtered_output,num_windows);
+	FILE* fft_out =fopen("E:\\ECSE 444 MicroProcessors\\out.csv","w");
+
+	if(fft_out!=NULL){
+		for(int i=0;i<num_windows;i++){
+			for(int j=0;j<halved_size;j++){
+				fprintf(fft_out,"%f,",fft_results[i][j]);
+			}
+			fprintf(fft_out,"\n");
+		}
+		fclose(fft_out);
+	}else{
+		printf("NULL");
+	}
+
+	FILE* filter_out =fopen("E:\\ECSE 444 MicroProcessors\\filter_out.csv","w");
+
+	if(filter_out!=NULL){
+		for(int i=0;i<num_windows;i++){
+			for(int j=0;j<num_bands;j++){
+				fprintf(filter_out,"%f,",filtered_output[i][j]);
+			}
+			fprintf(filter_out,"\n");
+		}
+		fclose(filter_out);
+	}else{
+		printf("NULL filt");
+	}
 
 	free(fft_results);
 

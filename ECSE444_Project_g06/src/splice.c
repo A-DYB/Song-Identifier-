@@ -13,7 +13,7 @@
 
 typedef double complex cpl;
 
-cpl *slice(cpl * array, int start, int end){
+cpl *slice(int * array, int start, int end){
 
 	//int arraySize = sizeof(array)/sizeof(array[0]);
 

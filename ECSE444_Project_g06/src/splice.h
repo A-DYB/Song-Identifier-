@@ -11,6 +11,6 @@
 
 typedef double complex cpl;
 
-cpl * slice(cpl *,int, int);
+cpl * slice(int *,int, int);
 
 #endif /* SPLICE_H_ */
