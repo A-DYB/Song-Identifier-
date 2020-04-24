@@ -65,7 +65,7 @@ int main(void) {
 	}
 
 	int size = sizeof(song_arr)/sizeof(song_arr[0]);
-	//TODO check if below is correct
+
 	int num_windows = size/(window_size/overlap)-1;
 
 	double (*song_output)[num_bands] = malloc(sizeof(double[num_windows][num_bands]));

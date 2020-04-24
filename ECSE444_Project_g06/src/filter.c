@@ -17,7 +17,6 @@
 //4.Keep the bins (from the 6 strongest bins) that are above the mean
 void filter(double fft_result[][halved_size], double output[][num_bands], int num_windows){
 
-	//double *band_max = malloc((6)*sizeof(double));
 	//contains (max magnitude of band,freq @ max,time slice)
 	double band_max[num_windows][num_bands][2];
 	memset( band_max, 0, num_windows*num_bands*2*sizeof(double) );
@@ -31,8 +30,9 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 	//freq bins is the window size/2 and
 	//windows = #samples//(window_size*(1-overlap%))
 
+	//mean if using max over the whole song
 	double mean =0;
-	//test for diff mean
+	//mean if only using max over a window
 	double mean_arr[num_windows];
 	memset( mean_arr, 0, num_windows*sizeof(double) );
 
@@ -110,7 +110,7 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 			}
 		}
 
-	//find mean of the max magnitudes over the whole song
+	//find mean of the max magnitudes over the whole song.
 /*
 	for(int k=0;k<6;k++){
 		printf("songmax %d : %f\n",k,song_max[k]);

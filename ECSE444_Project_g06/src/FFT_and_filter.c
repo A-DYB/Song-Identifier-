@@ -15,14 +15,14 @@
 
 typedef double complex cpl;
 
-void show(const char * s, cpl buf[], int size) {
-	printf("%s", s);
-
-	for (int i = 0; i < size; i++)
-		if (!cimag(buf[i]))
-			printf("%g ,", creal(buf[i]));
+void show(const char * str, cpl buf[], int size) {
+	printf("%s", str);
+	for(int i = 0; i < size; i++){
+		if(cimag(buf[i]) != 0)
+			printf("%g ",creal(buf[i]));
 		else
-			printf("(%g, %g) ", creal(buf[i]), cimag(buf[i]));
+			printf("(%g, %g) ",creal(buf[i]),cimag(buf[i]));
+	}
 }
 
 void compute(int * input, int size, double output[][num_bands], int num_windows){
@@ -48,13 +48,6 @@ void compute(int * input, int size, double output[][num_bands], int num_windows)
 		//show("\nfft: ", subset, 4);
 
 		for(int j=0;j<halved_size;j++){
-			/*
-			if(j>158){
-				fft_results[i][j] =subset[j]*0.2;
-			}else
-				fft_results[i][j]=subset[j];
-			*/
-			//TODO maybe do a low pass filter
 
 			fft_results[i][j]=subset[j];
 

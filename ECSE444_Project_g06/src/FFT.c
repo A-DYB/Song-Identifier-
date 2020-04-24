@@ -15,8 +15,7 @@ typedef double complex cpl;
 
 void windowed_fft(cpl *output, int window){
 
-	// TODO apply window function here
-
+	//Window function
 	for(int i=0;i<window;i++){
 		double hamming =0.5*(1-cos(2*PI*i/(window-1)));
 		output[i]=output[i]*hamming;
@@ -26,12 +25,6 @@ void windowed_fft(cpl *output, int window){
 
 	//compute the magnitude of the complex result
 	for(int i=0;i<window;i++){
-		/*
-		if(output[i] != 0){
-			output[i]=20*log10(cabs(output[i]));
-		}
-		*/
-
 		output[i]=cabs(output[i]);
 	}
 
@@ -45,8 +38,6 @@ void sample_fft(cpl *output, int n)
 	}
 	int m = n/2;
 	//create arrays with half the elements
-	//cpl even[m];
-	//cpl odd[m];
 	cpl *even = malloc((m)*sizeof(cpl));
 	cpl *odd = malloc((m)*sizeof(cpl));
 

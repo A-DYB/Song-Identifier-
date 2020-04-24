@@ -15,8 +15,6 @@ typedef double complex cpl;
 
 cpl *slice(int * array, int start, int end){
 
-	//int arraySize = sizeof(array)/sizeof(array[0]);
-
 	//TODO don't forget to free the memory when the caller is done with this.
 	cpl *subset = malloc((end-start)*sizeof(cpl));
 
