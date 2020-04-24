@@ -26,9 +26,12 @@ void windowed_fft(cpl *output, int window){
 
 	//compute the magnitude of the complex result
 	for(int i=0;i<window;i++){
+		/*
 		if(output[i] != 0){
-			//output[i]=20*log10(cabs(output[i]));
+			output[i]=20*log10(cabs(output[i]));
 		}
+		*/
+
 		output[i]=cabs(output[i]);
 	}
 

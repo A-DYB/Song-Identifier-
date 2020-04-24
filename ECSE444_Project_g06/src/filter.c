@@ -32,6 +32,9 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 	//windows = #samples//(window_size*(1-overlap%))
 
 	double mean =0;
+	//test for diff mean
+	double mean_arr[num_windows];
+	memset( mean_arr, 0, num_windows*sizeof(double) );
 
 	//loop over each time slice (window #)
 	for(int i=0; i<num_windows; i++){
@@ -108,11 +111,12 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 		}
 
 	//find mean of the max magnitudes over the whole song
+/*
 	for(int k=0;k<6;k++){
 		printf("songmax %d : %f\n",k,song_max[k]);
 		mean = mean + song_max[k];
 	}
-	mean = mean/6;
+	mean = 0.6*mean/6;
 	printf("mean : %f\n",mean);
 
 	for(int i=0;i<num_windows;i++){
@@ -125,7 +129,27 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 			}
 		}
 	}
+*/
 
+
+	//find mean of the max magnitudes over the 0.1s window for each window
+
+	for(int i=0;i<num_windows;i++){
+		for(int k=0;k<6;k++){
+			mean_arr[i] = mean_arr[i] + band_max[i][k][0]/6;
+		}
+	}
+
+	for(int i=0;i<num_windows;i++){
+		for(int j=0;j<6;j++){
+			if(band_max[i][j][0]>mean_arr[i]){
+				output[i][j]=band_max[i][j][1];
+			}
+			else{
+				output[i][j]=0;
+			}
+		}
+	}
 
 	//free(band_max);
 }
