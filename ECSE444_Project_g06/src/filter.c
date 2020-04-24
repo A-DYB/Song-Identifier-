@@ -40,7 +40,6 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 	for(int i=0; i<num_windows; i++){
 		//Use log bands 0,10; 10,20; 20,40; 40,80; 80,160; 160,511
 		//We have 1024 freq bins, but the magnitudes are mirrored, so only half are unique
-		//Use loop unrolling for optimization?
 		for(int j=0;j<halved_size;j++){
 			//0 Hz -> 107.6 Hz
 			if(j<10){
@@ -151,7 +150,6 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 		}
 	}
 
-	//free(band_max);
 }
 
 

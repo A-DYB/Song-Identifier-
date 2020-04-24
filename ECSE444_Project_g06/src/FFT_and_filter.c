@@ -38,19 +38,14 @@ void compute(int * input, int size, double output[][num_bands], int num_windows)
 	for(int i=0;i<num_windows;i++){
 		end = start+window_size;
 		subset = slice(input ,start,end);
-		//show("\nsubset: ", subset, 4);
 		start = start+window_size/overlap;
-
 
 		//pass the 1024 samples to apply window function and apply fft. Result goes in "output" array
 		//output has magnitude of the kth frequency. kth output corresponds to the frequency: f_s*k/N, where N is the window size
 		windowed_fft(subset,window_size);
-		//show("\nfft: ", subset, 4);
 
 		for(int j=0;j<halved_size;j++){
-
 			fft_results[i][j]=subset[j];
-
 		}
 		free(subset);
 
