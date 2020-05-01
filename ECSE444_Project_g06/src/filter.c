@@ -109,6 +109,7 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 		}
 
 	//find mean (times a constant) of the max magnitudes over the whole song.
+
 	for(int k=0;k<6;k++){
 		mean = mean + song_max[k];
 	}
@@ -146,6 +147,8 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 		}
 	}
 */
+
+
 }
 
 

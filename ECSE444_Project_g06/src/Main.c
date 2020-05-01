@@ -5,6 +5,7 @@
  Version     :
  Copyright   :
  Description : Find spectrogram of some songs and a clip, then find a match
+ 	 	 	 	 Select an optimization level and a sound clip from the provided csv files
  ============================================================================
  */
 
@@ -19,7 +20,7 @@
 #include "FFT_and_filter.h"
 #include "match.h"
 
-//Optimization levels
+//*********Optimization levels*************
 //0: Debug/testing mode, has some extra prints to display "score" values for each song
 //1: Standard Mode
 //2: Precomputed exponentials
@@ -39,10 +40,9 @@ typedef struct Array{
 
 typedef struct Scores{
 	int max_score;
-	char name[6];
+	char name[30];
 } Score;
 
-//halved_size or num_bands
 void print_2D(double arr[][num_bands], int num_wind){
 	printf("\n");
 	for(int i=0;i<num_wind ;i++){
@@ -52,7 +52,6 @@ void print_2D(double arr[][num_bands], int num_wind){
 		}
 		printf("), \n");
 	}
-
 }
 
 void read_file(FILE* file, Array* arr){
@@ -90,14 +89,15 @@ void write_file_2D(FILE* file, double arr[][num_bands], int num_windows){
 
 
 int main(void) {
+	printf("Optimization Level: %d\n", optimization);
 
 	int size =0;
 	clock_t start_t,end_t;
 
 	setvbuf (stdout, NULL, _IONBF, 0);
 
-	// SOUND CLIP, recorded from phone microphone. 44.1 kHz down-sampled to 11.025 kHz
-	// Possible files: sad_clip_arr.csv, buddy_clip_arr.csv, epic_clip_arr.csv
+	// ********* SELECT A SOUND CLIP **********, recorded from phone microphone. 44.1 kHz down-sampled to 11.025 kHz
+	// Provided files: sad_clip_arr.csv, buddy_clip_arr.csv, epic_clip_arr.csv
 	FILE* clip =fopen("E:\\ECSE 444 MicroProcessors\\sad_clip_arr.csv","r");
 	Array clip_arr;
 	read_file(clip, &clip_arr);

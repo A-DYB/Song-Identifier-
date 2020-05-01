@@ -41,8 +41,8 @@ Score match(double clip[][num_bands], int clip_wind, double song1[][num_bands],i
 				//loop through the clip
 
 					if(i+clip_wind-1<num_wind1){
-						if( abs( clip[j][k] ) > 0.0001 && abs( song1[i][k] ) > 0.0001){
-							if( abs( clip[j][k] - song1[i][k] )<0.0001 ){
+						if( abs( clip[j][k] ) > 0.0001 && abs( song1[i+j][k] ) > 0.0001){
+							if( abs( clip[j][k] - song1[i+j][k] )<0.0001 ){
 								match_count++;
 							}
 						}
@@ -54,7 +54,7 @@ Score match(double clip[][num_bands], int clip_wind, double song1[][num_bands],i
 
 			match_count =0;
 		}
-
+		match_count =0;
 		////////
 
 		for(int i =0;i<num_wind2;i++){
@@ -63,8 +63,8 @@ Score match(double clip[][num_bands], int clip_wind, double song1[][num_bands],i
 				//loop through the clip
 
 					if(i+clip_wind-1<num_wind2){
-						if( abs( clip[j][k] ) > 0.0001 && abs( song2[i][k] ) > 0.0001){
-							if( abs( clip[j][k] - song2[i][k] )<0.0001 ){
+						if( abs( clip[j][k] ) > 0.0001 && abs( song2[i+j][k] ) > 0.0001){
+							if( abs( clip[j][k] - song2[i+j][k] )<0.0001 ){
 								match_count++;
 							}
 						}
@@ -76,7 +76,7 @@ Score match(double clip[][num_bands], int clip_wind, double song1[][num_bands],i
 
 			match_count =0;
 		}
-
+		match_count =0;
 		////////
 
 		for(int i =0;i<num_wind3;i++){
@@ -85,8 +85,8 @@ Score match(double clip[][num_bands], int clip_wind, double song1[][num_bands],i
 				//loop through the clip
 
 					if(i+clip_wind-1<num_wind3){
-						if( abs( clip[j][k] ) > 0.0001 && abs( song3[i][k] ) > 0.0001){
-							if( abs( clip[j][k] - song3[i][k] )<0.0001 ){
+						if( abs( clip[j][k] ) > 0.0001 && abs( song3[i+j][k] ) > 0.0001){
+							if( abs( clip[j][k] - song3[i+j][k] )<0.0001 ){
 								match_count++;
 							}
 						}
