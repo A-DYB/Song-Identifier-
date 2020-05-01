@@ -1,8 +1,7 @@
 /*
  * splice.c
  *
- *  Created on: Apr 17, 2020
- *      Author: Adrian Dybka
+ * Author: Adrian Dybka
  */
 
 #include "splice.h"
@@ -24,3 +23,5 @@ cpl *slice(int * array, int start, int end){
 	//caller uses double *sub; sub = slice(...); free(sub)
 	return subset;
 }
+
+

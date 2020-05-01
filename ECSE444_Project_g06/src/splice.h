@@ -1,8 +1,7 @@
 /*
  * splice.h
  *
- *  Created on: Apr 17, 2020
- *      Author: Adrian Dybka
+ * Author: Adrian Dybka
  */
 
 #ifndef SPLICE_H_
@@ -12,5 +11,6 @@
 typedef double complex cpl;
 
 cpl * slice(int *,int, int);
+
 
 #endif /* SPLICE_H_ */

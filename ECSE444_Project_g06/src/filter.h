@@ -1,7 +1,6 @@
 /*
  * filter.h
  *
- *  Created on: Apr 17, 2020
  *      Author: Adrian Dybka
  */
 

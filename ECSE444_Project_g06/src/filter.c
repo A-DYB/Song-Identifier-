@@ -1,8 +1,7 @@
 /*
  * filter.c
  *
- *  Created on: Apr 17, 2020
- *      Author: Adrian Dybka
+ * Author: Adrian Dybka
  */
 
 
@@ -12,9 +11,9 @@
 #include <string.h>
 
 //For each window, put the 512 bins in 6 logarithmic bands
-//2.For each band keep the strongest bin of frequencies
-//3. Compute average of the 6 strongest bins
-//4.Keep the bins (from the 6 strongest bins) that are above the mean
+//For each band keep the strongest bin of frequencies
+//Compute average of the 6 strongest bins
+//Keep the bins (from the 6 strongest bins) that are above the mean
 void filter(double fft_result[][halved_size], double output[][num_bands], int num_windows){
 
 	//contains (max magnitude of band,freq @ max,time slice)
@@ -26,7 +25,7 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 
 	//output is 2D array, (6,#windows)
 
-	//fft result should be size (#windows,freq_bins) where
+	//fft_result should be size (#windows,freq_bins) where
 	//freq bins is the window size/2 and
 	//windows = #samples//(window_size*(1-overlap%))
 
@@ -109,14 +108,11 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 			}
 		}
 
-	//find mean of the max magnitudes over the whole song.
-/*
+	//find mean (times a constant) of the max magnitudes over the whole song.
 	for(int k=0;k<6;k++){
-		printf("songmax %d : %f\n",k,song_max[k]);
 		mean = mean + song_max[k];
 	}
-	mean = 0.6*mean/6;
-	printf("mean : %f\n",mean);
+	mean = 0.5*mean/6;
 
 	for(int i=0;i<num_windows;i++){
 		for(int j=0;j<6;j++){
@@ -128,11 +124,11 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 			}
 		}
 	}
-*/
+
 
 
 	//find mean of the max magnitudes over the 0.1s window for each window
-
+/*
 	for(int i=0;i<num_windows;i++){
 		for(int k=0;k<6;k++){
 			mean_arr[i] = mean_arr[i] + band_max[i][k][0]/6;
@@ -149,7 +145,7 @@ void filter(double fft_result[][halved_size], double output[][num_bands], int nu
 			}
 		}
 	}
-
+*/
 }
 
 
